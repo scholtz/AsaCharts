@@ -16,8 +16,8 @@ namespace AsaCharts.Model
         /// <summary>
         /// Time
         /// </summary>
-        [JsonProperty("errmsg")]
-        public long[]? ErrorMessage { get; set; }
+        [JsonProperty("nextTime")]
+        public long? NextTime { get; set; }
 
     }
 }

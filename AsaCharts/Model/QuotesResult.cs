@@ -17,7 +17,7 @@ namespace AsaCharts.Model
         /// </summary>
         [JsonProperty("d")]
 
-        public Quote[] Quotes { get; set; }
+        public List<Quote> Quotes { get; set; } = new List<Quote>();
 
 
         /// <summary>

@@ -1308,6 +1308,14 @@ type mutation_root {
   delete_offers("filter the rows which have to be deleted" where: offers_bool_exp!): offers_mutation_response
   "delete single row from the table: \"offers\""
   delete_offers_by_pk(id: String!): offers
+  "delete data from the table: \"ohlc\""
+  delete_ohlc("filter the rows which have to be deleted" where: ohlc_bool_exp!): ohlc_mutation_response
+  "delete single row from the table: \"ohlc\""
+  delete_ohlc_by_pk(resolution: String! symbol: String!): ohlc
+  "delete data from the table: \"symbol\""
+  delete_symbol("filter the rows which have to be deleted" where: symbol_bool_exp!): symbol_mutation_response
+  "delete single row from the table: \"symbol\""
+  delete_symbol_by_pk(asa1: bigint! asa2: bigint! env: Int!): symbol
   "delete data from the table: \"trade\""
   delete_trade("filter the rows which have to be deleted" where: trade_bool_exp!): trade_mutation_response
   "delete single row from the table: \"trade\""
@@ -1344,6 +1352,14 @@ type mutation_root {
   insert_offers("the rows to be inserted" objects: [offers_insert_input!]! "upsert condition" on_conflict: offers_on_conflict): offers_mutation_response
   "insert a single row into the table: \"offers\""
   insert_offers_one("the row to be inserted" object: offers_insert_input! "upsert condition" on_conflict: offers_on_conflict): offers
+  "insert data into the table: \"ohlc\""
+  insert_ohlc("the rows to be inserted" objects: [ohlc_insert_input!]! "upsert condition" on_conflict: ohlc_on_conflict): ohlc_mutation_response
+  "insert a single row into the table: \"ohlc\""
+  insert_ohlc_one("the row to be inserted" object: ohlc_insert_input! "upsert condition" on_conflict: ohlc_on_conflict): ohlc
+  "insert data into the table: \"symbol\""
+  insert_symbol("the rows to be inserted" objects: [symbol_insert_input!]! "upsert condition" on_conflict: symbol_on_conflict): symbol_mutation_response
+  "insert a single row into the table: \"symbol\""
+  insert_symbol_one("the row to be inserted" object: symbol_insert_input! "upsert condition" on_conflict: symbol_on_conflict): symbol
   "insert data into the table: \"trade\""
   insert_trade("the rows to be inserted" objects: [trade_insert_input!]! "upsert condition" on_conflict: trade_on_conflict): trade_mutation_response
   "insert a single row into the table: \"trade\""
@@ -1380,6 +1396,14 @@ type mutation_root {
   update_offers("increments the numeric columns with given value of the filtered values" _inc: offers_inc_input "sets the columns of the filtered rows to the given values" _set: offers_set_input "filter the rows which have to be updated" where: offers_bool_exp!): offers_mutation_response
   "update single row of the table: \"offers\""
   update_offers_by_pk("increments the numeric columns with given value of the filtered values" _inc: offers_inc_input "sets the columns of the filtered rows to the given values" _set: offers_set_input pk_columns: offers_pk_columns_input!): offers
+  "update data of the table: \"ohlc\""
+  update_ohlc("increments the numeric columns with given value of the filtered values" _inc: ohlc_inc_input "sets the columns of the filtered rows to the given values" _set: ohlc_set_input "filter the rows which have to be updated" where: ohlc_bool_exp!): ohlc_mutation_response
+  "update single row of the table: \"ohlc\""
+  update_ohlc_by_pk("increments the numeric columns with given value of the filtered values" _inc: ohlc_inc_input "sets the columns of the filtered rows to the given values" _set: ohlc_set_input pk_columns: ohlc_pk_columns_input!): ohlc
+  "update data of the table: \"symbol\""
+  update_symbol("increments the numeric columns with given value of the filtered values" _inc: symbol_inc_input "sets the columns of the filtered rows to the given values" _set: symbol_set_input "filter the rows which have to be updated" where: symbol_bool_exp!): symbol_mutation_response
+  "update single row of the table: \"symbol\""
+  update_symbol_by_pk("increments the numeric columns with given value of the filtered values" _inc: symbol_inc_input "sets the columns of the filtered rows to the given values" _set: symbol_set_input pk_columns: symbol_pk_columns_input!): symbol
   "update data of the table: \"trade\""
   update_trade("increments the numeric columns with given value of the filtered values" _inc: trade_inc_input "sets the columns of the filtered rows to the given values" _set: trade_set_input "filter the rows which have to be updated" where: trade_bool_exp!): trade_mutation_response
   "update single row of the table: \"trade\""
@@ -1884,6 +1908,271 @@ type offers_variance_fields {
   price: Float
 }
 
+"columns and relationships of \"ohlc\""
+type ohlc {
+  close: numeric!
+  high: numeric!
+  low: numeric!
+  open: numeric!
+  resolution: String!
+  symbol: String!
+  time: bigint!
+  volume: numeric!
+}
+
+"aggregated selection of \"ohlc\""
+type ohlc_aggregate {
+  aggregate: ohlc_aggregate_fields
+  nodes: [ohlc!]!
+}
+
+"aggregate fields of \"ohlc\""
+type ohlc_aggregate_fields {
+  avg: ohlc_avg_fields
+  count(columns: [ohlc_select_column!] distinct: Boolean): Int!
+  max: ohlc_max_fields
+  min: ohlc_min_fields
+  stddev: ohlc_stddev_fields
+  stddev_pop: ohlc_stddev_pop_fields
+  stddev_samp: ohlc_stddev_samp_fields
+  sum: ohlc_sum_fields
+  var_pop: ohlc_var_pop_fields
+  var_samp: ohlc_var_samp_fields
+  variance: ohlc_variance_fields
+}
+
+"aggregate avg on columns"
+type ohlc_avg_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
+"Boolean expression to filter rows from the table \"ohlc\". All fields are combined with a logical 'AND'."
+input ohlc_bool_exp {
+  _and: [ohlc_bool_exp!]
+  _not: ohlc_bool_exp
+  _or: [ohlc_bool_exp!]
+  close: numeric_comparison_exp
+  high: numeric_comparison_exp
+  low: numeric_comparison_exp
+  open: numeric_comparison_exp
+  resolution: String_comparison_exp
+  symbol: String_comparison_exp
+  time: bigint_comparison_exp
+  volume: numeric_comparison_exp
+}
+
+"unique or primary key constraints on table \"ohlc\""
+enum ohlc_constraint {
+  "unique or primary key constraint on columns \"symbol\", \"resolution\""
+  ohlc_pkey
+}
+
+"input type for incrementing numeric columns in table \"ohlc\""
+input ohlc_inc_input {
+  close: numeric
+  high: numeric
+  low: numeric
+  open: numeric
+  time: bigint
+  volume: numeric
+}
+
+"input type for inserting data into table \"ohlc\""
+input ohlc_insert_input {
+  close: numeric
+  high: numeric
+  low: numeric
+  open: numeric
+  resolution: String
+  symbol: String
+  time: bigint
+  volume: numeric
+}
+
+"aggregate max on columns"
+type ohlc_max_fields {
+  close: numeric
+  high: numeric
+  low: numeric
+  open: numeric
+  resolution: String
+  symbol: String
+  time: bigint
+  volume: numeric
+}
+
+"aggregate min on columns"
+type ohlc_min_fields {
+  close: numeric
+  high: numeric
+  low: numeric
+  open: numeric
+  resolution: String
+  symbol: String
+  time: bigint
+  volume: numeric
+}
+
+"response of any mutation on the table \"ohlc\""
+type ohlc_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [ohlc!]!
+}
+
+"on_conflict condition type for table \"ohlc\""
+input ohlc_on_conflict {
+  constraint: ohlc_constraint!
+  update_columns: [ohlc_update_column!]! = [  ]
+  where: ohlc_bool_exp
+}
+
+"Ordering options when selecting data from \"ohlc\"."
+input ohlc_order_by {
+  close: order_by
+  high: order_by
+  low: order_by
+  open: order_by
+  resolution: order_by
+  symbol: order_by
+  time: order_by
+  volume: order_by
+}
+
+"primary key columns input for table: ohlc"
+input ohlc_pk_columns_input {
+  resolution: String!
+  symbol: String!
+}
+
+"select columns of table \"ohlc\""
+enum ohlc_select_column {
+  "column name"
+  close
+  "column name"
+  high
+  "column name"
+  low
+  "column name"
+  open
+  "column name"
+  resolution
+  "column name"
+  symbol
+  "column name"
+  time
+  "column name"
+  volume
+}
+
+"input type for updating data in table \"ohlc\""
+input ohlc_set_input {
+  close: numeric
+  high: numeric
+  low: numeric
+  open: numeric
+  resolution: String
+  symbol: String
+  time: bigint
+  volume: numeric
+}
+
+"aggregate stddev on columns"
+type ohlc_stddev_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
+"aggregate stddev_pop on columns"
+type ohlc_stddev_pop_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
+"aggregate stddev_samp on columns"
+type ohlc_stddev_samp_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
+"aggregate sum on columns"
+type ohlc_sum_fields {
+  close: numeric
+  high: numeric
+  low: numeric
+  open: numeric
+  time: bigint
+  volume: numeric
+}
+
+"update columns of table \"ohlc\""
+enum ohlc_update_column {
+  "column name"
+  close
+  "column name"
+  high
+  "column name"
+  low
+  "column name"
+  open
+  "column name"
+  resolution
+  "column name"
+  symbol
+  "column name"
+  time
+  "column name"
+  volume
+}
+
+"aggregate var_pop on columns"
+type ohlc_var_pop_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
+"aggregate var_samp on columns"
+type ohlc_var_samp_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
+"aggregate variance on columns"
+type ohlc_variance_fields {
+  close: Float
+  high: Float
+  low: Float
+  open: Float
+  time: Float
+  volume: Float
+}
+
 "column ordering options"
 enum order_by {
   "in ascending order, nulls last"
@@ -1943,6 +2232,18 @@ type query_root {
   offers_aggregate("distinct select on columns" distinct_on: [offers_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offers_order_by!] "filter the rows returned" where: offers_bool_exp): offers_aggregate!
   "fetch data from the table: \"offers\" using primary key columns"
   offers_by_pk(id: String!): offers
+  "fetch data from the table: \"ohlc\""
+  ohlc("distinct select on columns" distinct_on: [ohlc_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [ohlc_order_by!] "filter the rows returned" where: ohlc_bool_exp): [ohlc!]!
+  "fetch aggregated fields from the table: \"ohlc\""
+  ohlc_aggregate("distinct select on columns" distinct_on: [ohlc_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [ohlc_order_by!] "filter the rows returned" where: ohlc_bool_exp): ohlc_aggregate!
+  "fetch data from the table: \"ohlc\" using primary key columns"
+  ohlc_by_pk(resolution: String! symbol: String!): ohlc
+  "fetch data from the table: \"symbol\""
+  symbol("distinct select on columns" distinct_on: [symbol_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [symbol_order_by!] "filter the rows returned" where: symbol_bool_exp): [symbol!]!
+  "fetch aggregated fields from the table: \"symbol\""
+  symbol_aggregate("distinct select on columns" distinct_on: [symbol_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [symbol_order_by!] "filter the rows returned" where: symbol_bool_exp): symbol_aggregate!
+  "fetch data from the table: \"symbol\" using primary key columns"
+  symbol_by_pk(asa1: bigint! asa2: bigint! env: Int!): symbol
   "fetch data from the table: \"trade\""
   trade("distinct select on columns" distinct_on: [trade_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [trade_order_by!] "filter the rows returned" where: trade_bool_exp): [trade!]!
   "fetch aggregated fields from the table: \"trade\""
@@ -2000,6 +2301,18 @@ type subscription_root {
   offers_aggregate("distinct select on columns" distinct_on: [offers_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offers_order_by!] "filter the rows returned" where: offers_bool_exp): offers_aggregate!
   "fetch data from the table: \"offers\" using primary key columns"
   offers_by_pk(id: String!): offers
+  "fetch data from the table: \"ohlc\""
+  ohlc("distinct select on columns" distinct_on: [ohlc_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [ohlc_order_by!] "filter the rows returned" where: ohlc_bool_exp): [ohlc!]!
+  "fetch aggregated fields from the table: \"ohlc\""
+  ohlc_aggregate("distinct select on columns" distinct_on: [ohlc_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [ohlc_order_by!] "filter the rows returned" where: ohlc_bool_exp): ohlc_aggregate!
+  "fetch data from the table: \"ohlc\" using primary key columns"
+  ohlc_by_pk(resolution: String! symbol: String!): ohlc
+  "fetch data from the table: \"symbol\""
+  symbol("distinct select on columns" distinct_on: [symbol_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [symbol_order_by!] "filter the rows returned" where: symbol_bool_exp): [symbol!]!
+  "fetch aggregated fields from the table: \"symbol\""
+  symbol_aggregate("distinct select on columns" distinct_on: [symbol_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [symbol_order_by!] "filter the rows returned" where: symbol_bool_exp): symbol_aggregate!
+  "fetch data from the table: \"symbol\" using primary key columns"
+  symbol_by_pk(asa1: bigint! asa2: bigint! env: Int!): symbol
   "fetch data from the table: \"trade\""
   trade("distinct select on columns" distinct_on: [trade_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [trade_order_by!] "filter the rows returned" where: trade_bool_exp): [trade!]!
   "fetch aggregated fields from the table: \"trade\""
@@ -2012,6 +2325,245 @@ type subscription_root {
   transaction_aggregate("distinct select on columns" distinct_on: [transaction_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [transaction_order_by!] "filter the rows returned" where: transaction_bool_exp): transaction_aggregate!
   "fetch data from the table: \"transaction\" using primary key columns"
   transaction_by_pk(id: bigint!): transaction
+}
+
+"columns and relationships of \"symbol\""
+type symbol {
+  asa1: bigint!
+  asa2: bigint!
+  created_at: timestamptz!
+  description: String!
+  env: Int!
+  name: String!
+  ticker: String!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"symbol\""
+type symbol_aggregate {
+  aggregate: symbol_aggregate_fields
+  nodes: [symbol!]!
+}
+
+"aggregate fields of \"symbol\""
+type symbol_aggregate_fields {
+  avg: symbol_avg_fields
+  count(columns: [symbol_select_column!] distinct: Boolean): Int!
+  max: symbol_max_fields
+  min: symbol_min_fields
+  stddev: symbol_stddev_fields
+  stddev_pop: symbol_stddev_pop_fields
+  stddev_samp: symbol_stddev_samp_fields
+  sum: symbol_sum_fields
+  var_pop: symbol_var_pop_fields
+  var_samp: symbol_var_samp_fields
+  variance: symbol_variance_fields
+}
+
+"aggregate avg on columns"
+type symbol_avg_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
+}
+
+"Boolean expression to filter rows from the table \"symbol\". All fields are combined with a logical 'AND'."
+input symbol_bool_exp {
+  _and: [symbol_bool_exp!]
+  _not: symbol_bool_exp
+  _or: [symbol_bool_exp!]
+  asa1: bigint_comparison_exp
+  asa2: bigint_comparison_exp
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  env: Int_comparison_exp
+  name: String_comparison_exp
+  ticker: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"symbol\""
+enum symbol_constraint {
+  "unique or primary key constraint on columns \"env\", \"asa2\", \"asa1\""
+  symbol_pkey
+}
+
+"input type for incrementing numeric columns in table \"symbol\""
+input symbol_inc_input {
+  asa1: bigint
+  asa2: bigint
+  env: Int
+}
+
+"input type for inserting data into table \"symbol\""
+input symbol_insert_input {
+  asa1: bigint
+  asa2: bigint
+  created_at: timestamptz
+  description: String
+  env: Int
+  name: String
+  ticker: String
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type symbol_max_fields {
+  asa1: bigint
+  asa2: bigint
+  created_at: timestamptz
+  description: String
+  env: Int
+  name: String
+  ticker: String
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type symbol_min_fields {
+  asa1: bigint
+  asa2: bigint
+  created_at: timestamptz
+  description: String
+  env: Int
+  name: String
+  ticker: String
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"symbol\""
+type symbol_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [symbol!]!
+}
+
+"on_conflict condition type for table \"symbol\""
+input symbol_on_conflict {
+  constraint: symbol_constraint!
+  update_columns: [symbol_update_column!]! = [  ]
+  where: symbol_bool_exp
+}
+
+"Ordering options when selecting data from \"symbol\"."
+input symbol_order_by {
+  asa1: order_by
+  asa2: order_by
+  created_at: order_by
+  description: order_by
+  env: order_by
+  name: order_by
+  ticker: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: symbol"
+input symbol_pk_columns_input {
+  asa1: bigint!
+  asa2: bigint!
+  env: Int!
+}
+
+"select columns of table \"symbol\""
+enum symbol_select_column {
+  "column name"
+  asa1
+  "column name"
+  asa2
+  "column name"
+  created_at
+  "column name"
+  description
+  "column name"
+  env
+  "column name"
+  name
+  "column name"
+  ticker
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"symbol\""
+input symbol_set_input {
+  asa1: bigint
+  asa2: bigint
+  created_at: timestamptz
+  description: String
+  env: Int
+  name: String
+  ticker: String
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type symbol_stddev_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
+}
+
+"aggregate stddev_pop on columns"
+type symbol_stddev_pop_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
+}
+
+"aggregate stddev_samp on columns"
+type symbol_stddev_samp_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
+}
+
+"aggregate sum on columns"
+type symbol_sum_fields {
+  asa1: bigint
+  asa2: bigint
+  env: Int
+}
+
+"update columns of table \"symbol\""
+enum symbol_update_column {
+  "column name"
+  asa1
+  "column name"
+  asa2
+  "column name"
+  created_at
+  "column name"
+  description
+  "column name"
+  env
+  "column name"
+  name
+  "column name"
+  ticker
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type symbol_var_pop_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
+}
+
+"aggregate var_samp on columns"
+type symbol_var_samp_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
+}
+
+"aggregate variance on columns"
+type symbol_variance_fields {
+  asa1: Float
+  asa2: Float
+  env: Float
 }
 
 scalar timestamptz

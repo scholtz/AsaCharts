@@ -18,36 +18,36 @@ namespace AsaCharts.Model
         /// Time
         /// </summary>
         [JsonProperty("t")]
-        public long[] TimeArray { get; set; } = new long[0];
+        public List<long> TimeArray { get; set; } = new List<long>();
 
         /// <summary>
         /// Close
         /// </summary>
         [JsonProperty("c")]
-        public decimal[] CloseArray { get; set; } = new decimal[0];
+        public List<decimal> CloseArray { get; set; } = new List<decimal>();
 
         /// <summary>
         /// Open
         /// </summary>
         [JsonProperty("o")]
-        public decimal[] OpenArray { get; set; } = new decimal[0];
+        public List<decimal> OpenArray { get; set; } = new List<decimal>();
 
         /// <summary>
         /// Open
         /// </summary>
         [JsonProperty("h")]
-        public decimal[] HighArray { get; set; } = new decimal[0];
+        public List<decimal> HighArray { get; set; } = new List<decimal>();
 
         /// <summary>
         /// Low
         /// </summary>
         [JsonProperty("l")]
-        public decimal[] LowArray { get; set; } = new decimal[0];
+        public List<decimal> LowArray { get; set; } = new List<decimal>();
 
         /// <summary>
         /// Volume
         /// </summary>
         [JsonProperty("v")]
-        public decimal[] Volume { get; set; } = new decimal[0];
+        public List<decimal> VolumeArray { get; set; } = new List<decimal>();
     }
 }
