@@ -1,0 +1,2 @@
+﻿dotnet tool install StrawberryShake.Tools --local
+dotnet graphql init https://graphql.k8s.diatomix.xyz/v1/graphql/ -n GraphQLClient -p ./AsaCharts

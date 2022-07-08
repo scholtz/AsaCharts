@@ -1,0 +1,2785 @@
+﻿schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+input Int_cast_exp {
+  String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+  _cast: Int_cast_exp
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  "does the column match the given case-insensitive pattern"
+  _ilike: String
+  _in: [String!]
+  "does the column match the given POSIX regular expression, case insensitive"
+  _iregex: String
+  _is_null: Boolean
+  "does the column match the given pattern"
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  "does the column NOT match the given case-insensitive pattern"
+  _nilike: String
+  _nin: [String!]
+  "does the column NOT match the given POSIX regular expression, case insensitive"
+  _niregex: String
+  "does the column NOT match the given pattern"
+  _nlike: String
+  "does the column NOT match the given POSIX regular expression, case sensitive"
+  _nregex: String
+  "does the column NOT match the given SQL regular expression"
+  _nsimilar: String
+  "does the column match the given POSIX regular expression, case sensitive"
+  _regex: String
+  "does the column match the given SQL regular expression"
+  _similar: String
+}
+
+"columns and relationships of \"bid\""
+type bid {
+  assetBuy: bigint!
+  assetSell: bigint!
+  created_at: timestamptz!
+  env: Int!
+  id: String!
+  owner: String!
+  price: float8!
+  updated_at: timestamptz!
+  volume: float8!
+  volumeAsa2: bigint!
+}
+
+"aggregated selection of \"bid\""
+type bid_aggregate {
+  aggregate: bid_aggregate_fields
+  nodes: [bid!]!
+}
+
+"aggregate fields of \"bid\""
+type bid_aggregate_fields {
+  avg: bid_avg_fields
+  count(columns: [bid_select_column!] distinct: Boolean): Int!
+  max: bid_max_fields
+  min: bid_min_fields
+  stddev: bid_stddev_fields
+  stddev_pop: bid_stddev_pop_fields
+  stddev_samp: bid_stddev_samp_fields
+  sum: bid_sum_fields
+  var_pop: bid_var_pop_fields
+  var_samp: bid_var_samp_fields
+  variance: bid_variance_fields
+}
+
+"aggregate avg on columns"
+type bid_avg_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"Boolean expression to filter rows from the table \"bid\". All fields are combined with a logical 'AND'."
+input bid_bool_exp {
+  _and: [bid_bool_exp!]
+  _not: bid_bool_exp
+  _or: [bid_bool_exp!]
+  assetBuy: bigint_comparison_exp
+  assetSell: bigint_comparison_exp
+  created_at: timestamptz_comparison_exp
+  env: Int_comparison_exp
+  id: String_comparison_exp
+  owner: String_comparison_exp
+  price: float8_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  volume: float8_comparison_exp
+  volumeAsa2: bigint_comparison_exp
+}
+
+"unique or primary key constraints on table \"bid\""
+enum bid_constraint {
+  "unique or primary key constraint on columns \"id\""
+  bid_pkey
+}
+
+"input type for incrementing numeric columns in table \"bid\""
+input bid_inc_input {
+  assetBuy: bigint
+  assetSell: bigint
+  env: Int
+  price: float8
+  volume: float8
+  volumeAsa2: bigint
+}
+
+"input type for inserting data into table \"bid\""
+input bid_insert_input {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: float8
+  volumeAsa2: bigint
+}
+
+"aggregate max on columns"
+type bid_max_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: float8
+  volumeAsa2: bigint
+}
+
+"aggregate min on columns"
+type bid_min_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: float8
+  volumeAsa2: bigint
+}
+
+"response of any mutation on the table \"bid\""
+type bid_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [bid!]!
+}
+
+"on_conflict condition type for table \"bid\""
+input bid_on_conflict {
+  constraint: bid_constraint!
+  update_columns: [bid_update_column!]! = [  ]
+  where: bid_bool_exp
+}
+
+"Ordering options when selecting data from \"bid\"."
+input bid_order_by {
+  assetBuy: order_by
+  assetSell: order_by
+  created_at: order_by
+  env: order_by
+  id: order_by
+  owner: order_by
+  price: order_by
+  updated_at: order_by
+  volume: order_by
+  volumeAsa2: order_by
+}
+
+"primary key columns input for table: bid"
+input bid_pk_columns_input {
+  id: String!
+}
+
+"select columns of table \"bid\""
+enum bid_select_column {
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+  "column name"
+  volume
+  "column name"
+  volumeAsa2
+}
+
+"input type for updating data in table \"bid\""
+input bid_set_input {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: float8
+  volumeAsa2: bigint
+}
+
+"aggregate stddev on columns"
+type bid_stddev_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"aggregate stddev_pop on columns"
+type bid_stddev_pop_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"aggregate stddev_samp on columns"
+type bid_stddev_samp_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"aggregate sum on columns"
+type bid_sum_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  env: Int
+  price: float8
+  volume: float8
+  volumeAsa2: bigint
+}
+
+"update columns of table \"bid\""
+enum bid_update_column {
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+  "column name"
+  volume
+  "column name"
+  volumeAsa2
+}
+
+"aggregate var_pop on columns"
+type bid_var_pop_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"aggregate var_samp on columns"
+type bid_var_samp_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"aggregate variance on columns"
+type bid_variance_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+  volumeAsa2: Float
+}
+
+"columns and relationships of \"bids\""
+type bids {
+  amount: numeric!
+  created_at: timestamptz!
+  id: String!
+  owner: String!
+  price: numeric!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"bids\""
+type bids_aggregate {
+  aggregate: bids_aggregate_fields
+  nodes: [bids!]!
+}
+
+"aggregate fields of \"bids\""
+type bids_aggregate_fields {
+  avg: bids_avg_fields
+  count(columns: [bids_select_column!] distinct: Boolean): Int!
+  max: bids_max_fields
+  min: bids_min_fields
+  stddev: bids_stddev_fields
+  stddev_pop: bids_stddev_pop_fields
+  stddev_samp: bids_stddev_samp_fields
+  sum: bids_sum_fields
+  var_pop: bids_var_pop_fields
+  var_samp: bids_var_samp_fields
+  variance: bids_variance_fields
+}
+
+"aggregate avg on columns"
+type bids_avg_fields {
+  amount: Float
+  price: Float
+}
+
+"Boolean expression to filter rows from the table \"bids\". All fields are combined with a logical 'AND'."
+input bids_bool_exp {
+  _and: [bids_bool_exp!]
+  _not: bids_bool_exp
+  _or: [bids_bool_exp!]
+  amount: numeric_comparison_exp
+  created_at: timestamptz_comparison_exp
+  id: String_comparison_exp
+  owner: String_comparison_exp
+  price: numeric_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"bids\""
+enum bids_constraint {
+  "unique or primary key constraint on columns \"id\""
+  bids_pkey
+}
+
+"input type for incrementing numeric columns in table \"bids\""
+input bids_inc_input {
+  amount: numeric
+  price: numeric
+}
+
+"input type for inserting data into table \"bids\""
+input bids_insert_input {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type bids_max_fields {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type bids_min_fields {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"bids\""
+type bids_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [bids!]!
+}
+
+"on_conflict condition type for table \"bids\""
+input bids_on_conflict {
+  constraint: bids_constraint!
+  update_columns: [bids_update_column!]! = [  ]
+  where: bids_bool_exp
+}
+
+"Ordering options when selecting data from \"bids\"."
+input bids_order_by {
+  amount: order_by
+  created_at: order_by
+  id: order_by
+  owner: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: bids"
+input bids_pk_columns_input {
+  id: String!
+}
+
+"select columns of table \"bids\""
+enum bids_select_column {
+  "column name"
+  amount
+  "column name"
+  created_at
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"bids\""
+input bids_set_input {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type bids_stddev_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate stddev_pop on columns"
+type bids_stddev_pop_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate stddev_samp on columns"
+type bids_stddev_samp_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate sum on columns"
+type bids_sum_fields {
+  amount: numeric
+  price: numeric
+}
+
+"update columns of table \"bids\""
+enum bids_update_column {
+  "column name"
+  amount
+  "column name"
+  created_at
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type bids_var_pop_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate var_samp on columns"
+type bids_var_samp_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate variance on columns"
+type bids_variance_fields {
+  amount: Float
+  price: Float
+}
+
+scalar bigint
+
+input bigint_cast_exp {
+  String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"bigint\". All fields are combined with logical 'AND'."
+input bigint_comparison_exp {
+  _cast: bigint_cast_exp
+  _eq: bigint
+  _gt: bigint
+  _gte: bigint
+  _in: [bigint!]
+  _is_null: Boolean
+  _lt: bigint
+  _lte: bigint
+  _neq: bigint
+  _nin: [bigint!]
+}
+
+"columns and relationships of \"environment\""
+type environment {
+  created_at: timestamptz!
+  hash: String!
+  id: Int!
+  name: String!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"environment\""
+type environment_aggregate {
+  aggregate: environment_aggregate_fields
+  nodes: [environment!]!
+}
+
+"aggregate fields of \"environment\""
+type environment_aggregate_fields {
+  avg: environment_avg_fields
+  count(columns: [environment_select_column!] distinct: Boolean): Int!
+  max: environment_max_fields
+  min: environment_min_fields
+  stddev: environment_stddev_fields
+  stddev_pop: environment_stddev_pop_fields
+  stddev_samp: environment_stddev_samp_fields
+  sum: environment_sum_fields
+  var_pop: environment_var_pop_fields
+  var_samp: environment_var_samp_fields
+  variance: environment_variance_fields
+}
+
+"aggregate avg on columns"
+type environment_avg_fields {
+  id: Float
+}
+
+"Boolean expression to filter rows from the table \"environment\". All fields are combined with a logical 'AND'."
+input environment_bool_exp {
+  _and: [environment_bool_exp!]
+  _not: environment_bool_exp
+  _or: [environment_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  hash: String_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"environment\""
+enum environment_constraint {
+  "unique or primary key constraint on columns \"hash\", \"name\""
+  environment_name_hash_key
+  "unique or primary key constraint on columns \"id\""
+  environment_pkey
+}
+
+"input type for incrementing numeric columns in table \"environment\""
+input environment_inc_input {
+  id: Int
+}
+
+"input type for inserting data into table \"environment\""
+input environment_insert_input {
+  created_at: timestamptz
+  hash: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type environment_max_fields {
+  created_at: timestamptz
+  hash: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type environment_min_fields {
+  created_at: timestamptz
+  hash: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"environment\""
+type environment_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [environment!]!
+}
+
+"on_conflict condition type for table \"environment\""
+input environment_on_conflict {
+  constraint: environment_constraint!
+  update_columns: [environment_update_column!]! = [  ]
+  where: environment_bool_exp
+}
+
+"Ordering options when selecting data from \"environment\"."
+input environment_order_by {
+  created_at: order_by
+  hash: order_by
+  id: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: environment"
+input environment_pk_columns_input {
+  id: Int!
+}
+
+"select columns of table \"environment\""
+enum environment_select_column {
+  "column name"
+  created_at
+  "column name"
+  hash
+  "column name"
+  id
+  "column name"
+  name
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"environment\""
+input environment_set_input {
+  created_at: timestamptz
+  hash: String
+  id: Int
+  name: String
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type environment_stddev_fields {
+  id: Float
+}
+
+"aggregate stddev_pop on columns"
+type environment_stddev_pop_fields {
+  id: Float
+}
+
+"aggregate stddev_samp on columns"
+type environment_stddev_samp_fields {
+  id: Float
+}
+
+"aggregate sum on columns"
+type environment_sum_fields {
+  id: Int
+}
+
+"update columns of table \"environment\""
+enum environment_update_column {
+  "column name"
+  created_at
+  "column name"
+  hash
+  "column name"
+  id
+  "column name"
+  name
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type environment_var_pop_fields {
+  id: Float
+}
+
+"aggregate var_samp on columns"
+type environment_var_samp_fields {
+  id: Float
+}
+
+"aggregate variance on columns"
+type environment_variance_fields {
+  id: Float
+}
+
+"columns and relationships of \"escrow\""
+type escrow {
+  address: String!
+  assetBuy: bigint!
+  assetSell: bigint!
+  created_at: timestamptz!
+  env: Int!
+  lsig: String!
+  multiplier: bigint!
+  price: bigint!
+  seller: String!
+  updated_at: timestamptz!
+  ver: String!
+}
+
+"aggregated selection of \"escrow\""
+type escrow_aggregate {
+  aggregate: escrow_aggregate_fields
+  nodes: [escrow!]!
+}
+
+"aggregate fields of \"escrow\""
+type escrow_aggregate_fields {
+  avg: escrow_avg_fields
+  count(columns: [escrow_select_column!] distinct: Boolean): Int!
+  max: escrow_max_fields
+  min: escrow_min_fields
+  stddev: escrow_stddev_fields
+  stddev_pop: escrow_stddev_pop_fields
+  stddev_samp: escrow_stddev_samp_fields
+  sum: escrow_sum_fields
+  var_pop: escrow_var_pop_fields
+  var_samp: escrow_var_samp_fields
+  variance: escrow_variance_fields
+}
+
+"aggregate avg on columns"
+type escrow_avg_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+"Boolean expression to filter rows from the table \"escrow\". All fields are combined with a logical 'AND'."
+input escrow_bool_exp {
+  _and: [escrow_bool_exp!]
+  _not: escrow_bool_exp
+  _or: [escrow_bool_exp!]
+  address: String_comparison_exp
+  assetBuy: bigint_comparison_exp
+  assetSell: bigint_comparison_exp
+  created_at: timestamptz_comparison_exp
+  env: Int_comparison_exp
+  lsig: String_comparison_exp
+  multiplier: bigint_comparison_exp
+  price: bigint_comparison_exp
+  seller: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  ver: String_comparison_exp
+}
+
+"unique or primary key constraints on table \"escrow\""
+enum escrow_constraint {
+  "unique or primary key constraint on columns \"address\""
+  escrow_pkey
+}
+
+"input type for incrementing numeric columns in table \"escrow\""
+input escrow_inc_input {
+  assetBuy: bigint
+  assetSell: bigint
+  env: Int
+  multiplier: bigint
+  price: bigint
+}
+
+"input type for inserting data into table \"escrow\""
+input escrow_insert_input {
+  address: String
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  lsig: String
+  multiplier: bigint
+  price: bigint
+  seller: String
+  updated_at: timestamptz
+  ver: String
+}
+
+"aggregate max on columns"
+type escrow_max_fields {
+  address: String
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  lsig: String
+  multiplier: bigint
+  price: bigint
+  seller: String
+  updated_at: timestamptz
+  ver: String
+}
+
+"aggregate min on columns"
+type escrow_min_fields {
+  address: String
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  lsig: String
+  multiplier: bigint
+  price: bigint
+  seller: String
+  updated_at: timestamptz
+  ver: String
+}
+
+"response of any mutation on the table \"escrow\""
+type escrow_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [escrow!]!
+}
+
+"on_conflict condition type for table \"escrow\""
+input escrow_on_conflict {
+  constraint: escrow_constraint!
+  update_columns: [escrow_update_column!]! = [  ]
+  where: escrow_bool_exp
+}
+
+"Ordering options when selecting data from \"escrow\"."
+input escrow_order_by {
+  address: order_by
+  assetBuy: order_by
+  assetSell: order_by
+  created_at: order_by
+  env: order_by
+  lsig: order_by
+  multiplier: order_by
+  price: order_by
+  seller: order_by
+  updated_at: order_by
+  ver: order_by
+}
+
+"primary key columns input for table: escrow"
+input escrow_pk_columns_input {
+  address: String!
+}
+
+"select columns of table \"escrow\""
+enum escrow_select_column {
+  "column name"
+  address
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  lsig
+  "column name"
+  multiplier
+  "column name"
+  price
+  "column name"
+  seller
+  "column name"
+  updated_at
+  "column name"
+  ver
+}
+
+"input type for updating data in table \"escrow\""
+input escrow_set_input {
+  address: String
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  lsig: String
+  multiplier: bigint
+  price: bigint
+  seller: String
+  updated_at: timestamptz
+  ver: String
+}
+
+"aggregate stddev on columns"
+type escrow_stddev_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+"aggregate stddev_pop on columns"
+type escrow_stddev_pop_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+"aggregate stddev_samp on columns"
+type escrow_stddev_samp_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+"aggregate sum on columns"
+type escrow_sum_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  env: Int
+  multiplier: bigint
+  price: bigint
+}
+
+"update columns of table \"escrow\""
+enum escrow_update_column {
+  "column name"
+  address
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  lsig
+  "column name"
+  multiplier
+  "column name"
+  price
+  "column name"
+  seller
+  "column name"
+  updated_at
+  "column name"
+  ver
+}
+
+"aggregate var_pop on columns"
+type escrow_var_pop_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+"aggregate var_samp on columns"
+type escrow_var_samp_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+"aggregate variance on columns"
+type escrow_variance_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  multiplier: Float
+  price: Float
+}
+
+scalar float8
+
+input float8_cast_exp {
+  String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"float8\". All fields are combined with logical 'AND'."
+input float8_comparison_exp {
+  _cast: float8_cast_exp
+  _eq: float8
+  _gt: float8
+  _gte: float8
+  _in: [float8!]
+  _is_null: Boolean
+  _lt: float8
+  _lte: float8
+  _neq: float8
+  _nin: [float8!]
+}
+
+"columns and relationships of \"indexer\""
+type indexer {
+  created_at: timestamptz!
+  env: Int!
+  id: Int!
+  instance: String!
+  round: bigint!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"indexer\""
+type indexer_aggregate {
+  aggregate: indexer_aggregate_fields
+  nodes: [indexer!]!
+}
+
+"aggregate fields of \"indexer\""
+type indexer_aggregate_fields {
+  avg: indexer_avg_fields
+  count(columns: [indexer_select_column!] distinct: Boolean): Int!
+  max: indexer_max_fields
+  min: indexer_min_fields
+  stddev: indexer_stddev_fields
+  stddev_pop: indexer_stddev_pop_fields
+  stddev_samp: indexer_stddev_samp_fields
+  sum: indexer_sum_fields
+  var_pop: indexer_var_pop_fields
+  var_samp: indexer_var_samp_fields
+  variance: indexer_variance_fields
+}
+
+"aggregate avg on columns"
+type indexer_avg_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"Boolean expression to filter rows from the table \"indexer\". All fields are combined with a logical 'AND'."
+input indexer_bool_exp {
+  _and: [indexer_bool_exp!]
+  _not: indexer_bool_exp
+  _or: [indexer_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  env: Int_comparison_exp
+  id: Int_comparison_exp
+  instance: String_comparison_exp
+  round: bigint_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"indexer\""
+enum indexer_constraint {
+  "unique or primary key constraint on columns \"id\""
+  indexer_pkey
+}
+
+"input type for incrementing numeric columns in table \"indexer\""
+input indexer_inc_input {
+  env: Int
+  id: Int
+  round: bigint
+}
+
+"input type for inserting data into table \"indexer\""
+input indexer_insert_input {
+  created_at: timestamptz
+  env: Int
+  id: Int
+  instance: String
+  round: bigint
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type indexer_max_fields {
+  created_at: timestamptz
+  env: Int
+  id: Int
+  instance: String
+  round: bigint
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type indexer_min_fields {
+  created_at: timestamptz
+  env: Int
+  id: Int
+  instance: String
+  round: bigint
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"indexer\""
+type indexer_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [indexer!]!
+}
+
+"on_conflict condition type for table \"indexer\""
+input indexer_on_conflict {
+  constraint: indexer_constraint!
+  update_columns: [indexer_update_column!]! = [  ]
+  where: indexer_bool_exp
+}
+
+"Ordering options when selecting data from \"indexer\"."
+input indexer_order_by {
+  created_at: order_by
+  env: order_by
+  id: order_by
+  instance: order_by
+  round: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: indexer"
+input indexer_pk_columns_input {
+  id: Int!
+}
+
+"select columns of table \"indexer\""
+enum indexer_select_column {
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  instance
+  "column name"
+  round
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"indexer\""
+input indexer_set_input {
+  created_at: timestamptz
+  env: Int
+  id: Int
+  instance: String
+  round: bigint
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type indexer_stddev_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"aggregate stddev_pop on columns"
+type indexer_stddev_pop_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"aggregate stddev_samp on columns"
+type indexer_stddev_samp_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"aggregate sum on columns"
+type indexer_sum_fields {
+  env: Int
+  id: Int
+  round: bigint
+}
+
+"update columns of table \"indexer\""
+enum indexer_update_column {
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  instance
+  "column name"
+  round
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type indexer_var_pop_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"aggregate var_samp on columns"
+type indexer_var_samp_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"aggregate variance on columns"
+type indexer_variance_fields {
+  env: Float
+  id: Float
+  round: Float
+}
+
+"mutation root"
+type mutation_root {
+  "delete data from the table: \"bid\""
+  delete_bid("filter the rows which have to be deleted" where: bid_bool_exp!): bid_mutation_response
+  "delete single row from the table: \"bid\""
+  delete_bid_by_pk(id: String!): bid
+  "delete data from the table: \"bids\""
+  delete_bids("filter the rows which have to be deleted" where: bids_bool_exp!): bids_mutation_response
+  "delete single row from the table: \"bids\""
+  delete_bids_by_pk(id: String!): bids
+  "delete data from the table: \"environment\""
+  delete_environment("filter the rows which have to be deleted" where: environment_bool_exp!): environment_mutation_response
+  "delete single row from the table: \"environment\""
+  delete_environment_by_pk(id: Int!): environment
+  "delete data from the table: \"escrow\""
+  delete_escrow("filter the rows which have to be deleted" where: escrow_bool_exp!): escrow_mutation_response
+  "delete single row from the table: \"escrow\""
+  delete_escrow_by_pk(address: String!): escrow
+  "delete data from the table: \"indexer\""
+  delete_indexer("filter the rows which have to be deleted" where: indexer_bool_exp!): indexer_mutation_response
+  "delete single row from the table: \"indexer\""
+  delete_indexer_by_pk(id: Int!): indexer
+  "delete data from the table: \"offer\""
+  delete_offer("filter the rows which have to be deleted" where: offer_bool_exp!): offer_mutation_response
+  "delete single row from the table: \"offer\""
+  delete_offer_by_pk(id: String!): offer
+  "delete data from the table: \"offers\""
+  delete_offers("filter the rows which have to be deleted" where: offers_bool_exp!): offers_mutation_response
+  "delete single row from the table: \"offers\""
+  delete_offers_by_pk(id: String!): offers
+  "delete data from the table: \"trade\""
+  delete_trade("filter the rows which have to be deleted" where: trade_bool_exp!): trade_mutation_response
+  "delete single row from the table: \"trade\""
+  delete_trade_by_pk(id: String!): trade
+  "delete data from the table: \"transaction\""
+  delete_transaction("filter the rows which have to be deleted" where: transaction_bool_exp!): transaction_mutation_response
+  "delete single row from the table: \"transaction\""
+  delete_transaction_by_pk(id: bigint!): transaction
+  "insert data into the table: \"bid\""
+  insert_bid("the rows to be inserted" objects: [bid_insert_input!]! "upsert condition" on_conflict: bid_on_conflict): bid_mutation_response
+  "insert a single row into the table: \"bid\""
+  insert_bid_one("the row to be inserted" object: bid_insert_input! "upsert condition" on_conflict: bid_on_conflict): bid
+  "insert data into the table: \"bids\""
+  insert_bids("the rows to be inserted" objects: [bids_insert_input!]! "upsert condition" on_conflict: bids_on_conflict): bids_mutation_response
+  "insert a single row into the table: \"bids\""
+  insert_bids_one("the row to be inserted" object: bids_insert_input! "upsert condition" on_conflict: bids_on_conflict): bids
+  "insert data into the table: \"environment\""
+  insert_environment("the rows to be inserted" objects: [environment_insert_input!]! "upsert condition" on_conflict: environment_on_conflict): environment_mutation_response
+  "insert a single row into the table: \"environment\""
+  insert_environment_one("the row to be inserted" object: environment_insert_input! "upsert condition" on_conflict: environment_on_conflict): environment
+  "insert data into the table: \"escrow\""
+  insert_escrow("the rows to be inserted" objects: [escrow_insert_input!]! "upsert condition" on_conflict: escrow_on_conflict): escrow_mutation_response
+  "insert a single row into the table: \"escrow\""
+  insert_escrow_one("the row to be inserted" object: escrow_insert_input! "upsert condition" on_conflict: escrow_on_conflict): escrow
+  "insert data into the table: \"indexer\""
+  insert_indexer("the rows to be inserted" objects: [indexer_insert_input!]! "upsert condition" on_conflict: indexer_on_conflict): indexer_mutation_response
+  "insert a single row into the table: \"indexer\""
+  insert_indexer_one("the row to be inserted" object: indexer_insert_input! "upsert condition" on_conflict: indexer_on_conflict): indexer
+  "insert data into the table: \"offer\""
+  insert_offer("the rows to be inserted" objects: [offer_insert_input!]! "upsert condition" on_conflict: offer_on_conflict): offer_mutation_response
+  "insert a single row into the table: \"offer\""
+  insert_offer_one("the row to be inserted" object: offer_insert_input! "upsert condition" on_conflict: offer_on_conflict): offer
+  "insert data into the table: \"offers\""
+  insert_offers("the rows to be inserted" objects: [offers_insert_input!]! "upsert condition" on_conflict: offers_on_conflict): offers_mutation_response
+  "insert a single row into the table: \"offers\""
+  insert_offers_one("the row to be inserted" object: offers_insert_input! "upsert condition" on_conflict: offers_on_conflict): offers
+  "insert data into the table: \"trade\""
+  insert_trade("the rows to be inserted" objects: [trade_insert_input!]! "upsert condition" on_conflict: trade_on_conflict): trade_mutation_response
+  "insert a single row into the table: \"trade\""
+  insert_trade_one("the row to be inserted" object: trade_insert_input! "upsert condition" on_conflict: trade_on_conflict): trade
+  "insert data into the table: \"transaction\""
+  insert_transaction("the rows to be inserted" objects: [transaction_insert_input!]! "upsert condition" on_conflict: transaction_on_conflict): transaction_mutation_response
+  "insert a single row into the table: \"transaction\""
+  insert_transaction_one("the row to be inserted" object: transaction_insert_input! "upsert condition" on_conflict: transaction_on_conflict): transaction
+  "update data of the table: \"bid\""
+  update_bid("increments the numeric columns with given value of the filtered values" _inc: bid_inc_input "sets the columns of the filtered rows to the given values" _set: bid_set_input "filter the rows which have to be updated" where: bid_bool_exp!): bid_mutation_response
+  "update single row of the table: \"bid\""
+  update_bid_by_pk("increments the numeric columns with given value of the filtered values" _inc: bid_inc_input "sets the columns of the filtered rows to the given values" _set: bid_set_input pk_columns: bid_pk_columns_input!): bid
+  "update data of the table: \"bids\""
+  update_bids("increments the numeric columns with given value of the filtered values" _inc: bids_inc_input "sets the columns of the filtered rows to the given values" _set: bids_set_input "filter the rows which have to be updated" where: bids_bool_exp!): bids_mutation_response
+  "update single row of the table: \"bids\""
+  update_bids_by_pk("increments the numeric columns with given value of the filtered values" _inc: bids_inc_input "sets the columns of the filtered rows to the given values" _set: bids_set_input pk_columns: bids_pk_columns_input!): bids
+  "update data of the table: \"environment\""
+  update_environment("increments the numeric columns with given value of the filtered values" _inc: environment_inc_input "sets the columns of the filtered rows to the given values" _set: environment_set_input "filter the rows which have to be updated" where: environment_bool_exp!): environment_mutation_response
+  "update single row of the table: \"environment\""
+  update_environment_by_pk("increments the numeric columns with given value of the filtered values" _inc: environment_inc_input "sets the columns of the filtered rows to the given values" _set: environment_set_input pk_columns: environment_pk_columns_input!): environment
+  "update data of the table: \"escrow\""
+  update_escrow("increments the numeric columns with given value of the filtered values" _inc: escrow_inc_input "sets the columns of the filtered rows to the given values" _set: escrow_set_input "filter the rows which have to be updated" where: escrow_bool_exp!): escrow_mutation_response
+  "update single row of the table: \"escrow\""
+  update_escrow_by_pk("increments the numeric columns with given value of the filtered values" _inc: escrow_inc_input "sets the columns of the filtered rows to the given values" _set: escrow_set_input pk_columns: escrow_pk_columns_input!): escrow
+  "update data of the table: \"indexer\""
+  update_indexer("increments the numeric columns with given value of the filtered values" _inc: indexer_inc_input "sets the columns of the filtered rows to the given values" _set: indexer_set_input "filter the rows which have to be updated" where: indexer_bool_exp!): indexer_mutation_response
+  "update single row of the table: \"indexer\""
+  update_indexer_by_pk("increments the numeric columns with given value of the filtered values" _inc: indexer_inc_input "sets the columns of the filtered rows to the given values" _set: indexer_set_input pk_columns: indexer_pk_columns_input!): indexer
+  "update data of the table: \"offer\""
+  update_offer("increments the numeric columns with given value of the filtered values" _inc: offer_inc_input "sets the columns of the filtered rows to the given values" _set: offer_set_input "filter the rows which have to be updated" where: offer_bool_exp!): offer_mutation_response
+  "update single row of the table: \"offer\""
+  update_offer_by_pk("increments the numeric columns with given value of the filtered values" _inc: offer_inc_input "sets the columns of the filtered rows to the given values" _set: offer_set_input pk_columns: offer_pk_columns_input!): offer
+  "update data of the table: \"offers\""
+  update_offers("increments the numeric columns with given value of the filtered values" _inc: offers_inc_input "sets the columns of the filtered rows to the given values" _set: offers_set_input "filter the rows which have to be updated" where: offers_bool_exp!): offers_mutation_response
+  "update single row of the table: \"offers\""
+  update_offers_by_pk("increments the numeric columns with given value of the filtered values" _inc: offers_inc_input "sets the columns of the filtered rows to the given values" _set: offers_set_input pk_columns: offers_pk_columns_input!): offers
+  "update data of the table: \"trade\""
+  update_trade("increments the numeric columns with given value of the filtered values" _inc: trade_inc_input "sets the columns of the filtered rows to the given values" _set: trade_set_input "filter the rows which have to be updated" where: trade_bool_exp!): trade_mutation_response
+  "update single row of the table: \"trade\""
+  update_trade_by_pk("increments the numeric columns with given value of the filtered values" _inc: trade_inc_input "sets the columns of the filtered rows to the given values" _set: trade_set_input pk_columns: trade_pk_columns_input!): trade
+  "update data of the table: \"transaction\""
+  update_transaction("increments the numeric columns with given value of the filtered values" _inc: transaction_inc_input "sets the columns of the filtered rows to the given values" _set: transaction_set_input "filter the rows which have to be updated" where: transaction_bool_exp!): transaction_mutation_response
+  "update single row of the table: \"transaction\""
+  update_transaction_by_pk("increments the numeric columns with given value of the filtered values" _inc: transaction_inc_input "sets the columns of the filtered rows to the given values" _set: transaction_set_input pk_columns: transaction_pk_columns_input!): transaction
+}
+
+scalar numeric
+
+input numeric_cast_exp {
+  String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"numeric\". All fields are combined with logical 'AND'."
+input numeric_comparison_exp {
+  _cast: numeric_cast_exp
+  _eq: numeric
+  _gt: numeric
+  _gte: numeric
+  _in: [numeric!]
+  _is_null: Boolean
+  _lt: numeric
+  _lte: numeric
+  _neq: numeric
+  _nin: [numeric!]
+}
+
+"columns and relationships of \"offer\""
+type offer {
+  assetBuy: bigint!
+  assetSell: bigint!
+  created_at: timestamptz!
+  env: Int!
+  id: String!
+  owner: String!
+  price: float8!
+  updated_at: timestamptz!
+  volume: bigint!
+}
+
+"aggregated selection of \"offer\""
+type offer_aggregate {
+  aggregate: offer_aggregate_fields
+  nodes: [offer!]!
+}
+
+"aggregate fields of \"offer\""
+type offer_aggregate_fields {
+  avg: offer_avg_fields
+  count(columns: [offer_select_column!] distinct: Boolean): Int!
+  max: offer_max_fields
+  min: offer_min_fields
+  stddev: offer_stddev_fields
+  stddev_pop: offer_stddev_pop_fields
+  stddev_samp: offer_stddev_samp_fields
+  sum: offer_sum_fields
+  var_pop: offer_var_pop_fields
+  var_samp: offer_var_samp_fields
+  variance: offer_variance_fields
+}
+
+"aggregate avg on columns"
+type offer_avg_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"Boolean expression to filter rows from the table \"offer\". All fields are combined with a logical 'AND'."
+input offer_bool_exp {
+  _and: [offer_bool_exp!]
+  _not: offer_bool_exp
+  _or: [offer_bool_exp!]
+  assetBuy: bigint_comparison_exp
+  assetSell: bigint_comparison_exp
+  created_at: timestamptz_comparison_exp
+  env: Int_comparison_exp
+  id: String_comparison_exp
+  owner: String_comparison_exp
+  price: float8_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  volume: bigint_comparison_exp
+}
+
+"unique or primary key constraints on table \"offer\""
+enum offer_constraint {
+  "unique or primary key constraint on columns \"env\", \"id\""
+  offer_id_env_key
+  "unique or primary key constraint on columns \"id\""
+  offer_pkey
+}
+
+"input type for incrementing numeric columns in table \"offer\""
+input offer_inc_input {
+  assetBuy: bigint
+  assetSell: bigint
+  env: Int
+  price: float8
+  volume: bigint
+}
+
+"input type for inserting data into table \"offer\""
+input offer_insert_input {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: bigint
+}
+
+"aggregate max on columns"
+type offer_max_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: bigint
+}
+
+"aggregate min on columns"
+type offer_min_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: bigint
+}
+
+"response of any mutation on the table \"offer\""
+type offer_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [offer!]!
+}
+
+"on_conflict condition type for table \"offer\""
+input offer_on_conflict {
+  constraint: offer_constraint!
+  update_columns: [offer_update_column!]! = [  ]
+  where: offer_bool_exp
+}
+
+"Ordering options when selecting data from \"offer\"."
+input offer_order_by {
+  assetBuy: order_by
+  assetSell: order_by
+  created_at: order_by
+  env: order_by
+  id: order_by
+  owner: order_by
+  price: order_by
+  updated_at: order_by
+  volume: order_by
+}
+
+"primary key columns input for table: offer"
+input offer_pk_columns_input {
+  id: String!
+}
+
+"select columns of table \"offer\""
+enum offer_select_column {
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+  "column name"
+  volume
+}
+
+"input type for updating data in table \"offer\""
+input offer_set_input {
+  assetBuy: bigint
+  assetSell: bigint
+  created_at: timestamptz
+  env: Int
+  id: String
+  owner: String
+  price: float8
+  updated_at: timestamptz
+  volume: bigint
+}
+
+"aggregate stddev on columns"
+type offer_stddev_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"aggregate stddev_pop on columns"
+type offer_stddev_pop_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"aggregate stddev_samp on columns"
+type offer_stddev_samp_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"aggregate sum on columns"
+type offer_sum_fields {
+  assetBuy: bigint
+  assetSell: bigint
+  env: Int
+  price: float8
+  volume: bigint
+}
+
+"update columns of table \"offer\""
+enum offer_update_column {
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+  "column name"
+  volume
+}
+
+"aggregate var_pop on columns"
+type offer_var_pop_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"aggregate var_samp on columns"
+type offer_var_samp_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"aggregate variance on columns"
+type offer_variance_fields {
+  assetBuy: Float
+  assetSell: Float
+  env: Float
+  price: Float
+  volume: Float
+}
+
+"columns and relationships of \"offers\""
+type offers {
+  amount: numeric!
+  created_at: timestamptz!
+  id: String!
+  owner: String!
+  price: numeric!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"offers\""
+type offers_aggregate {
+  aggregate: offers_aggregate_fields
+  nodes: [offers!]!
+}
+
+"aggregate fields of \"offers\""
+type offers_aggregate_fields {
+  avg: offers_avg_fields
+  count(columns: [offers_select_column!] distinct: Boolean): Int!
+  max: offers_max_fields
+  min: offers_min_fields
+  stddev: offers_stddev_fields
+  stddev_pop: offers_stddev_pop_fields
+  stddev_samp: offers_stddev_samp_fields
+  sum: offers_sum_fields
+  var_pop: offers_var_pop_fields
+  var_samp: offers_var_samp_fields
+  variance: offers_variance_fields
+}
+
+"aggregate avg on columns"
+type offers_avg_fields {
+  amount: Float
+  price: Float
+}
+
+"Boolean expression to filter rows from the table \"offers\". All fields are combined with a logical 'AND'."
+input offers_bool_exp {
+  _and: [offers_bool_exp!]
+  _not: offers_bool_exp
+  _or: [offers_bool_exp!]
+  amount: numeric_comparison_exp
+  created_at: timestamptz_comparison_exp
+  id: String_comparison_exp
+  owner: String_comparison_exp
+  price: numeric_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"offers\""
+enum offers_constraint {
+  "unique or primary key constraint on columns \"id\""
+  offers_pkey
+}
+
+"input type for incrementing numeric columns in table \"offers\""
+input offers_inc_input {
+  amount: numeric
+  price: numeric
+}
+
+"input type for inserting data into table \"offers\""
+input offers_insert_input {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type offers_max_fields {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type offers_min_fields {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"offers\""
+type offers_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [offers!]!
+}
+
+"on_conflict condition type for table \"offers\""
+input offers_on_conflict {
+  constraint: offers_constraint!
+  update_columns: [offers_update_column!]! = [  ]
+  where: offers_bool_exp
+}
+
+"Ordering options when selecting data from \"offers\"."
+input offers_order_by {
+  amount: order_by
+  created_at: order_by
+  id: order_by
+  owner: order_by
+  price: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: offers"
+input offers_pk_columns_input {
+  id: String!
+}
+
+"select columns of table \"offers\""
+enum offers_select_column {
+  "column name"
+  amount
+  "column name"
+  created_at
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"offers\""
+input offers_set_input {
+  amount: numeric
+  created_at: timestamptz
+  id: String
+  owner: String
+  price: numeric
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type offers_stddev_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate stddev_pop on columns"
+type offers_stddev_pop_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate stddev_samp on columns"
+type offers_stddev_samp_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate sum on columns"
+type offers_sum_fields {
+  amount: numeric
+  price: numeric
+}
+
+"update columns of table \"offers\""
+enum offers_update_column {
+  "column name"
+  amount
+  "column name"
+  created_at
+  "column name"
+  id
+  "column name"
+  owner
+  "column name"
+  price
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type offers_var_pop_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate var_samp on columns"
+type offers_var_samp_fields {
+  amount: Float
+  price: Float
+}
+
+"aggregate variance on columns"
+type offers_variance_fields {
+  amount: Float
+  price: Float
+}
+
+"column ordering options"
+enum order_by {
+  "in ascending order, nulls last"
+  asc
+  "in ascending order, nulls first"
+  asc_nulls_first
+  "in ascending order, nulls last"
+  asc_nulls_last
+  "in descending order, nulls first"
+  desc
+  "in descending order, nulls first"
+  desc_nulls_first
+  "in descending order, nulls last"
+  desc_nulls_last
+}
+
+type query_root {
+  "fetch data from the table: \"bid\""
+  bid("distinct select on columns" distinct_on: [bid_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bid_order_by!] "filter the rows returned" where: bid_bool_exp): [bid!]!
+  "fetch aggregated fields from the table: \"bid\""
+  bid_aggregate("distinct select on columns" distinct_on: [bid_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bid_order_by!] "filter the rows returned" where: bid_bool_exp): bid_aggregate!
+  "fetch data from the table: \"bid\" using primary key columns"
+  bid_by_pk(id: String!): bid
+  "fetch data from the table: \"bids\""
+  bids("distinct select on columns" distinct_on: [bids_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bids_order_by!] "filter the rows returned" where: bids_bool_exp): [bids!]!
+  "fetch aggregated fields from the table: \"bids\""
+  bids_aggregate("distinct select on columns" distinct_on: [bids_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bids_order_by!] "filter the rows returned" where: bids_bool_exp): bids_aggregate!
+  "fetch data from the table: \"bids\" using primary key columns"
+  bids_by_pk(id: String!): bids
+  "fetch data from the table: \"environment\""
+  environment("distinct select on columns" distinct_on: [environment_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [environment_order_by!] "filter the rows returned" where: environment_bool_exp): [environment!]!
+  "fetch aggregated fields from the table: \"environment\""
+  environment_aggregate("distinct select on columns" distinct_on: [environment_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [environment_order_by!] "filter the rows returned" where: environment_bool_exp): environment_aggregate!
+  "fetch data from the table: \"environment\" using primary key columns"
+  environment_by_pk(id: Int!): environment
+  "fetch data from the table: \"escrow\""
+  escrow("distinct select on columns" distinct_on: [escrow_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [escrow_order_by!] "filter the rows returned" where: escrow_bool_exp): [escrow!]!
+  "fetch aggregated fields from the table: \"escrow\""
+  escrow_aggregate("distinct select on columns" distinct_on: [escrow_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [escrow_order_by!] "filter the rows returned" where: escrow_bool_exp): escrow_aggregate!
+  "fetch data from the table: \"escrow\" using primary key columns"
+  escrow_by_pk(address: String!): escrow
+  "fetch data from the table: \"indexer\""
+  indexer("distinct select on columns" distinct_on: [indexer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [indexer_order_by!] "filter the rows returned" where: indexer_bool_exp): [indexer!]!
+  "fetch aggregated fields from the table: \"indexer\""
+  indexer_aggregate("distinct select on columns" distinct_on: [indexer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [indexer_order_by!] "filter the rows returned" where: indexer_bool_exp): indexer_aggregate!
+  "fetch data from the table: \"indexer\" using primary key columns"
+  indexer_by_pk(id: Int!): indexer
+  "fetch data from the table: \"offer\""
+  offer("distinct select on columns" distinct_on: [offer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offer_order_by!] "filter the rows returned" where: offer_bool_exp): [offer!]!
+  "fetch aggregated fields from the table: \"offer\""
+  offer_aggregate("distinct select on columns" distinct_on: [offer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offer_order_by!] "filter the rows returned" where: offer_bool_exp): offer_aggregate!
+  "fetch data from the table: \"offer\" using primary key columns"
+  offer_by_pk(id: String!): offer
+  "fetch data from the table: \"offers\""
+  offers("distinct select on columns" distinct_on: [offers_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offers_order_by!] "filter the rows returned" where: offers_bool_exp): [offers!]!
+  "fetch aggregated fields from the table: \"offers\""
+  offers_aggregate("distinct select on columns" distinct_on: [offers_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offers_order_by!] "filter the rows returned" where: offers_bool_exp): offers_aggregate!
+  "fetch data from the table: \"offers\" using primary key columns"
+  offers_by_pk(id: String!): offers
+  "fetch data from the table: \"trade\""
+  trade("distinct select on columns" distinct_on: [trade_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [trade_order_by!] "filter the rows returned" where: trade_bool_exp): [trade!]!
+  "fetch aggregated fields from the table: \"trade\""
+  trade_aggregate("distinct select on columns" distinct_on: [trade_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [trade_order_by!] "filter the rows returned" where: trade_bool_exp): trade_aggregate!
+  "fetch data from the table: \"trade\" using primary key columns"
+  trade_by_pk(id: String!): trade
+  "fetch data from the table: \"transaction\""
+  transaction("distinct select on columns" distinct_on: [transaction_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [transaction_order_by!] "filter the rows returned" where: transaction_bool_exp): [transaction!]!
+  "fetch aggregated fields from the table: \"transaction\""
+  transaction_aggregate("distinct select on columns" distinct_on: [transaction_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [transaction_order_by!] "filter the rows returned" where: transaction_bool_exp): transaction_aggregate!
+  "fetch data from the table: \"transaction\" using primary key columns"
+  transaction_by_pk(id: bigint!): transaction
+}
+
+type subscription_root {
+  "fetch data from the table: \"bid\""
+  bid("distinct select on columns" distinct_on: [bid_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bid_order_by!] "filter the rows returned" where: bid_bool_exp): [bid!]!
+  "fetch aggregated fields from the table: \"bid\""
+  bid_aggregate("distinct select on columns" distinct_on: [bid_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bid_order_by!] "filter the rows returned" where: bid_bool_exp): bid_aggregate!
+  "fetch data from the table: \"bid\" using primary key columns"
+  bid_by_pk(id: String!): bid
+  "fetch data from the table: \"bids\""
+  bids("distinct select on columns" distinct_on: [bids_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bids_order_by!] "filter the rows returned" where: bids_bool_exp): [bids!]!
+  "fetch aggregated fields from the table: \"bids\""
+  bids_aggregate("distinct select on columns" distinct_on: [bids_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [bids_order_by!] "filter the rows returned" where: bids_bool_exp): bids_aggregate!
+  "fetch data from the table: \"bids\" using primary key columns"
+  bids_by_pk(id: String!): bids
+  "fetch data from the table: \"environment\""
+  environment("distinct select on columns" distinct_on: [environment_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [environment_order_by!] "filter the rows returned" where: environment_bool_exp): [environment!]!
+  "fetch aggregated fields from the table: \"environment\""
+  environment_aggregate("distinct select on columns" distinct_on: [environment_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [environment_order_by!] "filter the rows returned" where: environment_bool_exp): environment_aggregate!
+  "fetch data from the table: \"environment\" using primary key columns"
+  environment_by_pk(id: Int!): environment
+  "fetch data from the table: \"escrow\""
+  escrow("distinct select on columns" distinct_on: [escrow_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [escrow_order_by!] "filter the rows returned" where: escrow_bool_exp): [escrow!]!
+  "fetch aggregated fields from the table: \"escrow\""
+  escrow_aggregate("distinct select on columns" distinct_on: [escrow_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [escrow_order_by!] "filter the rows returned" where: escrow_bool_exp): escrow_aggregate!
+  "fetch data from the table: \"escrow\" using primary key columns"
+  escrow_by_pk(address: String!): escrow
+  "fetch data from the table: \"indexer\""
+  indexer("distinct select on columns" distinct_on: [indexer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [indexer_order_by!] "filter the rows returned" where: indexer_bool_exp): [indexer!]!
+  "fetch aggregated fields from the table: \"indexer\""
+  indexer_aggregate("distinct select on columns" distinct_on: [indexer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [indexer_order_by!] "filter the rows returned" where: indexer_bool_exp): indexer_aggregate!
+  "fetch data from the table: \"indexer\" using primary key columns"
+  indexer_by_pk(id: Int!): indexer
+  "fetch data from the table: \"offer\""
+  offer("distinct select on columns" distinct_on: [offer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offer_order_by!] "filter the rows returned" where: offer_bool_exp): [offer!]!
+  "fetch aggregated fields from the table: \"offer\""
+  offer_aggregate("distinct select on columns" distinct_on: [offer_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offer_order_by!] "filter the rows returned" where: offer_bool_exp): offer_aggregate!
+  "fetch data from the table: \"offer\" using primary key columns"
+  offer_by_pk(id: String!): offer
+  "fetch data from the table: \"offers\""
+  offers("distinct select on columns" distinct_on: [offers_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offers_order_by!] "filter the rows returned" where: offers_bool_exp): [offers!]!
+  "fetch aggregated fields from the table: \"offers\""
+  offers_aggregate("distinct select on columns" distinct_on: [offers_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [offers_order_by!] "filter the rows returned" where: offers_bool_exp): offers_aggregate!
+  "fetch data from the table: \"offers\" using primary key columns"
+  offers_by_pk(id: String!): offers
+  "fetch data from the table: \"trade\""
+  trade("distinct select on columns" distinct_on: [trade_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [trade_order_by!] "filter the rows returned" where: trade_bool_exp): [trade!]!
+  "fetch aggregated fields from the table: \"trade\""
+  trade_aggregate("distinct select on columns" distinct_on: [trade_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [trade_order_by!] "filter the rows returned" where: trade_bool_exp): trade_aggregate!
+  "fetch data from the table: \"trade\" using primary key columns"
+  trade_by_pk(id: String!): trade
+  "fetch data from the table: \"transaction\""
+  transaction("distinct select on columns" distinct_on: [transaction_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [transaction_order_by!] "filter the rows returned" where: transaction_bool_exp): [transaction!]!
+  "fetch aggregated fields from the table: \"transaction\""
+  transaction_aggregate("distinct select on columns" distinct_on: [transaction_select_column!] "limit the number of rows returned" limit: Int "skip the first n rows. Use only with order_by" offset: Int "sort the rows by one or more columns" order_by: [transaction_order_by!] "filter the rows returned" where: transaction_bool_exp): transaction_aggregate!
+  "fetch data from the table: \"transaction\" using primary key columns"
+  transaction_by_pk(id: bigint!): transaction
+}
+
+scalar timestamptz
+
+input timestamptz_cast_exp {
+  String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"timestamptz\". All fields are combined with logical 'AND'."
+input timestamptz_comparison_exp {
+  _cast: timestamptz_cast_exp
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+"columns and relationships of \"trade\""
+type trade {
+  amount: numeric!
+  amountInverted: numeric!
+  assetBuy: bigint!
+  assetSell: bigint!
+  buyQuantity: bigint!
+  buyer: String!
+  created_at: timestamptz!
+  env: Int!
+  id: String!
+  price: numeric!
+  priceInverted: numeric!
+  sellPriceBase: bigint!
+  sellPriceMultiplier: bigint!
+  sellQuantity: bigint!
+  seller: String!
+  time: timestamptz!
+  tx2Id: String!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"trade\""
+type trade_aggregate {
+  aggregate: trade_aggregate_fields
+  nodes: [trade!]!
+}
+
+"aggregate fields of \"trade\""
+type trade_aggregate_fields {
+  avg: trade_avg_fields
+  count(columns: [trade_select_column!] distinct: Boolean): Int!
+  max: trade_max_fields
+  min: trade_min_fields
+  stddev: trade_stddev_fields
+  stddev_pop: trade_stddev_pop_fields
+  stddev_samp: trade_stddev_samp_fields
+  sum: trade_sum_fields
+  var_pop: trade_var_pop_fields
+  var_samp: trade_var_samp_fields
+  variance: trade_variance_fields
+}
+
+"aggregate avg on columns"
+type trade_avg_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"Boolean expression to filter rows from the table \"trade\". All fields are combined with a logical 'AND'."
+input trade_bool_exp {
+  _and: [trade_bool_exp!]
+  _not: trade_bool_exp
+  _or: [trade_bool_exp!]
+  amount: numeric_comparison_exp
+  amountInverted: numeric_comparison_exp
+  assetBuy: bigint_comparison_exp
+  assetSell: bigint_comparison_exp
+  buyQuantity: bigint_comparison_exp
+  buyer: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  env: Int_comparison_exp
+  id: String_comparison_exp
+  price: numeric_comparison_exp
+  priceInverted: numeric_comparison_exp
+  sellPriceBase: bigint_comparison_exp
+  sellPriceMultiplier: bigint_comparison_exp
+  sellQuantity: bigint_comparison_exp
+  seller: String_comparison_exp
+  time: timestamptz_comparison_exp
+  tx2Id: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"trade\""
+enum trade_constraint {
+  "unique or primary key constraint on columns \"id\""
+  trade_pkey
+}
+
+"input type for incrementing numeric columns in table \"trade\""
+input trade_inc_input {
+  amount: numeric
+  amountInverted: numeric
+  assetBuy: bigint
+  assetSell: bigint
+  buyQuantity: bigint
+  env: Int
+  price: numeric
+  priceInverted: numeric
+  sellPriceBase: bigint
+  sellPriceMultiplier: bigint
+  sellQuantity: bigint
+}
+
+"input type for inserting data into table \"trade\""
+input trade_insert_input {
+  amount: numeric
+  amountInverted: numeric
+  assetBuy: bigint
+  assetSell: bigint
+  buyQuantity: bigint
+  buyer: String
+  created_at: timestamptz
+  env: Int
+  id: String
+  price: numeric
+  priceInverted: numeric
+  sellPriceBase: bigint
+  sellPriceMultiplier: bigint
+  sellQuantity: bigint
+  seller: String
+  time: timestamptz
+  tx2Id: String
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type trade_max_fields {
+  amount: numeric
+  amountInverted: numeric
+  assetBuy: bigint
+  assetSell: bigint
+  buyQuantity: bigint
+  buyer: String
+  created_at: timestamptz
+  env: Int
+  id: String
+  price: numeric
+  priceInverted: numeric
+  sellPriceBase: bigint
+  sellPriceMultiplier: bigint
+  sellQuantity: bigint
+  seller: String
+  time: timestamptz
+  tx2Id: String
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type trade_min_fields {
+  amount: numeric
+  amountInverted: numeric
+  assetBuy: bigint
+  assetSell: bigint
+  buyQuantity: bigint
+  buyer: String
+  created_at: timestamptz
+  env: Int
+  id: String
+  price: numeric
+  priceInverted: numeric
+  sellPriceBase: bigint
+  sellPriceMultiplier: bigint
+  sellQuantity: bigint
+  seller: String
+  time: timestamptz
+  tx2Id: String
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"trade\""
+type trade_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [trade!]!
+}
+
+"on_conflict condition type for table \"trade\""
+input trade_on_conflict {
+  constraint: trade_constraint!
+  update_columns: [trade_update_column!]! = [  ]
+  where: trade_bool_exp
+}
+
+"Ordering options when selecting data from \"trade\"."
+input trade_order_by {
+  amount: order_by
+  amountInverted: order_by
+  assetBuy: order_by
+  assetSell: order_by
+  buyQuantity: order_by
+  buyer: order_by
+  created_at: order_by
+  env: order_by
+  id: order_by
+  price: order_by
+  priceInverted: order_by
+  sellPriceBase: order_by
+  sellPriceMultiplier: order_by
+  sellQuantity: order_by
+  seller: order_by
+  time: order_by
+  tx2Id: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: trade"
+input trade_pk_columns_input {
+  id: String!
+}
+
+"select columns of table \"trade\""
+enum trade_select_column {
+  "column name"
+  amount
+  "column name"
+  amountInverted
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  buyQuantity
+  "column name"
+  buyer
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  price
+  "column name"
+  priceInverted
+  "column name"
+  sellPriceBase
+  "column name"
+  sellPriceMultiplier
+  "column name"
+  sellQuantity
+  "column name"
+  seller
+  "column name"
+  time
+  "column name"
+  tx2Id
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"trade\""
+input trade_set_input {
+  amount: numeric
+  amountInverted: numeric
+  assetBuy: bigint
+  assetSell: bigint
+  buyQuantity: bigint
+  buyer: String
+  created_at: timestamptz
+  env: Int
+  id: String
+  price: numeric
+  priceInverted: numeric
+  sellPriceBase: bigint
+  sellPriceMultiplier: bigint
+  sellQuantity: bigint
+  seller: String
+  time: timestamptz
+  tx2Id: String
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type trade_stddev_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"aggregate stddev_pop on columns"
+type trade_stddev_pop_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"aggregate stddev_samp on columns"
+type trade_stddev_samp_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"aggregate sum on columns"
+type trade_sum_fields {
+  amount: numeric
+  amountInverted: numeric
+  assetBuy: bigint
+  assetSell: bigint
+  buyQuantity: bigint
+  env: Int
+  price: numeric
+  priceInverted: numeric
+  sellPriceBase: bigint
+  sellPriceMultiplier: bigint
+  sellQuantity: bigint
+}
+
+"update columns of table \"trade\""
+enum trade_update_column {
+  "column name"
+  amount
+  "column name"
+  amountInverted
+  "column name"
+  assetBuy
+  "column name"
+  assetSell
+  "column name"
+  buyQuantity
+  "column name"
+  buyer
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  price
+  "column name"
+  priceInverted
+  "column name"
+  sellPriceBase
+  "column name"
+  sellPriceMultiplier
+  "column name"
+  sellQuantity
+  "column name"
+  seller
+  "column name"
+  time
+  "column name"
+  tx2Id
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type trade_var_pop_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"aggregate var_samp on columns"
+type trade_var_samp_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"aggregate variance on columns"
+type trade_variance_fields {
+  amount: Float
+  amountInverted: Float
+  assetBuy: Float
+  assetSell: Float
+  buyQuantity: Float
+  env: Float
+  price: Float
+  priceInverted: Float
+  sellPriceBase: Float
+  sellPriceMultiplier: Float
+  sellQuantity: Float
+}
+
+"columns and relationships of \"transaction\""
+type transaction {
+  account: String!
+  amount: bigint!
+  asset: bigint!
+  balance: bigint
+  created_at: timestamptz!
+  env: Int!
+  id: bigint!
+  intraround: Int!
+  round: bigint!
+  txId: String!
+  type: Int!
+  updated_at: timestamptz!
+}
+
+"aggregated selection of \"transaction\""
+type transaction_aggregate {
+  aggregate: transaction_aggregate_fields
+  nodes: [transaction!]!
+}
+
+"aggregate fields of \"transaction\""
+type transaction_aggregate_fields {
+  avg: transaction_avg_fields
+  count(columns: [transaction_select_column!] distinct: Boolean): Int!
+  max: transaction_max_fields
+  min: transaction_min_fields
+  stddev: transaction_stddev_fields
+  stddev_pop: transaction_stddev_pop_fields
+  stddev_samp: transaction_stddev_samp_fields
+  sum: transaction_sum_fields
+  var_pop: transaction_var_pop_fields
+  var_samp: transaction_var_samp_fields
+  variance: transaction_variance_fields
+}
+
+"aggregate avg on columns"
+type transaction_avg_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"Boolean expression to filter rows from the table \"transaction\". All fields are combined with a logical 'AND'."
+input transaction_bool_exp {
+  _and: [transaction_bool_exp!]
+  _not: transaction_bool_exp
+  _or: [transaction_bool_exp!]
+  account: String_comparison_exp
+  amount: bigint_comparison_exp
+  asset: bigint_comparison_exp
+  balance: bigint_comparison_exp
+  created_at: timestamptz_comparison_exp
+  env: Int_comparison_exp
+  id: bigint_comparison_exp
+  intraround: Int_comparison_exp
+  round: bigint_comparison_exp
+  txId: String_comparison_exp
+  type: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+}
+
+"unique or primary key constraints on table \"transaction\""
+enum transaction_constraint {
+  "unique or primary key constraint on columns \"id\""
+  transaction_pkey
+  "unique or primary key constraint on columns \"env\", \"type\", \"txId\""
+  transaction_txId_type_env_key
+}
+
+"input type for incrementing numeric columns in table \"transaction\""
+input transaction_inc_input {
+  amount: bigint
+  asset: bigint
+  balance: bigint
+  env: Int
+  id: bigint
+  intraround: Int
+  round: bigint
+  type: Int
+}
+
+"input type for inserting data into table \"transaction\""
+input transaction_insert_input {
+  account: String
+  amount: bigint
+  asset: bigint
+  balance: bigint
+  created_at: timestamptz
+  env: Int
+  id: bigint
+  intraround: Int
+  round: bigint
+  txId: String
+  type: Int
+  updated_at: timestamptz
+}
+
+"aggregate max on columns"
+type transaction_max_fields {
+  account: String
+  amount: bigint
+  asset: bigint
+  balance: bigint
+  created_at: timestamptz
+  env: Int
+  id: bigint
+  intraround: Int
+  round: bigint
+  txId: String
+  type: Int
+  updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type transaction_min_fields {
+  account: String
+  amount: bigint
+  asset: bigint
+  balance: bigint
+  created_at: timestamptz
+  env: Int
+  id: bigint
+  intraround: Int
+  round: bigint
+  txId: String
+  type: Int
+  updated_at: timestamptz
+}
+
+"response of any mutation on the table \"transaction\""
+type transaction_mutation_response {
+  "number of rows affected by the mutation"
+  affected_rows: Int!
+  "data from the rows affected by the mutation"
+  returning: [transaction!]!
+}
+
+"on_conflict condition type for table \"transaction\""
+input transaction_on_conflict {
+  constraint: transaction_constraint!
+  update_columns: [transaction_update_column!]! = [  ]
+  where: transaction_bool_exp
+}
+
+"Ordering options when selecting data from \"transaction\"."
+input transaction_order_by {
+  account: order_by
+  amount: order_by
+  asset: order_by
+  balance: order_by
+  created_at: order_by
+  env: order_by
+  id: order_by
+  intraround: order_by
+  round: order_by
+  txId: order_by
+  type: order_by
+  updated_at: order_by
+}
+
+"primary key columns input for table: transaction"
+input transaction_pk_columns_input {
+  id: bigint!
+}
+
+"select columns of table \"transaction\""
+enum transaction_select_column {
+  "column name"
+  account
+  "column name"
+  amount
+  "column name"
+  asset
+  "column name"
+  balance
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  intraround
+  "column name"
+  round
+  "column name"
+  txId
+  "column name"
+  type
+  "column name"
+  updated_at
+}
+
+"input type for updating data in table \"transaction\""
+input transaction_set_input {
+  account: String
+  amount: bigint
+  asset: bigint
+  balance: bigint
+  created_at: timestamptz
+  env: Int
+  id: bigint
+  intraround: Int
+  round: bigint
+  txId: String
+  type: Int
+  updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type transaction_stddev_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"aggregate stddev_pop on columns"
+type transaction_stddev_pop_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"aggregate stddev_samp on columns"
+type transaction_stddev_samp_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"aggregate sum on columns"
+type transaction_sum_fields {
+  amount: bigint
+  asset: bigint
+  balance: bigint
+  env: Int
+  id: bigint
+  intraround: Int
+  round: bigint
+  type: Int
+}
+
+"update columns of table \"transaction\""
+enum transaction_update_column {
+  "column name"
+  account
+  "column name"
+  amount
+  "column name"
+  asset
+  "column name"
+  balance
+  "column name"
+  created_at
+  "column name"
+  env
+  "column name"
+  id
+  "column name"
+  intraround
+  "column name"
+  round
+  "column name"
+  txId
+  "column name"
+  type
+  "column name"
+  updated_at
+}
+
+"aggregate var_pop on columns"
+type transaction_var_pop_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"aggregate var_samp on columns"
+type transaction_var_samp_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"aggregate variance on columns"
+type transaction_variance_fields {
+  amount: Float
+  asset: Float
+  balance: Float
+  env: Float
+  id: Float
+  intraround: Float
+  round: Float
+  type: Float
+}
+
+"whether this query should be cached (Hasura Cloud only)"
+directive @cached("measured in seconds" ttl: Int! = 60 "refresh the cache entry" refresh: Boolean! = false) on QUERY
